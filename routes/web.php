@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Auth::routes();
 
 //Frontend routes
@@ -24,8 +26,19 @@ Route::get('/orders', 'OrdersController@index')->name('orders');
 
 //Admin routes
 Route::group(['namespace' => 'Admin', 'middleware' => 'admin'], function() {
-    Route::get('/admin/dashboard', 'DashboardController@index')->name('admin.dashboard');
-    Route::get('/admin/categories', 'CategoriesController@index')->name('admin.categories');
+    Route::get('/admin', 'DashboardController@index')->name('admin.dashboard');
+
+    //Categories
+    Route::group(['prefix' => '/admin/categories'], function (){
+        Route::get('/', 'CategoriesController@index')->name('admin.categories');
+        Route::get('/create', 'CategoriesController@create')->name('admin.categories.create');
+        Route::post('/add', 'CategoriesController@add')->name('admin.categories.add');
+        Route::get('/edit/{category}', 'CategoriesController@edit')->name('admin.categories.edit');
+        Route::post('/save/{category}', 'CategoriesController@save')->name('admin.categories.save');
+        Route::get('/delete/{category}', 'CategoriesController@delete')->name('admin.categories.delete');
+    });
+
+
 });
 
 
