@@ -8,7 +8,7 @@
                     <div class="card-header">Edit Category</div>
                     <div class="card-body">
 
-                        <form action="{{route('admin.categories.save', ['id' => $category->id])}}" method="post">
+                        <form action="{{route('admin.categories.update', ['id' => $category->id])}}" method="post">
                             @csrf
                             <table class="table table-bordered">
                                 <tr>

@@ -28,6 +28,7 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'description' => 'required',
         ]);
 
         $category = new Category();
@@ -37,19 +38,19 @@ class CategoriesController extends Controller
         return redirect('/admin/categories');
     }
 
-    public function save(Request $request)
+    public function update(Request $request, $id)
     {
-        $category = Category::query()->find($request->id);
+        $category = Category::query()->find($id);
         $category->name = $request->name;
         $category->description = $request->description;
         $category->save();
-        return redirect()->route('/admin/categories');
+        return redirect()->route('admin.categories');
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        Category::destroy($request->id);
-        return redirect()->route('/admin/categories');
+        Category::destroy($id);
+        return redirect()->route('admin.categories');
     }
 
 }

@@ -34,7 +34,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'admin'], function() {
         Route::get('/create', 'CategoriesController@create')->name('admin.categories.create');
         Route::post('/add', 'CategoriesController@add')->name('admin.categories.add');
         Route::get('/edit/{category}', 'CategoriesController@edit')->name('admin.categories.edit');
-        Route::post('/save/{category}', 'CategoriesController@save')->name('admin.categories.save');
+        Route::post('/update/{category}', 'CategoriesController@update')->name('admin.categories.update');
         Route::get('/delete/{category}', 'CategoriesController@delete')->name('admin.categories.delete');
     });
 

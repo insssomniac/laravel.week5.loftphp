@@ -8,6 +8,11 @@ class Product extends Model
 {
     public function orders()
     {
-        return $this->belongsToMany('App\Order', 'orders_products');
+        return $this->belongsToMany(Order::class, 'orders_products');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
