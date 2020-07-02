@@ -38,6 +38,26 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'admin'], function() {
         Route::get('/delete/{category}', 'CategoriesController@delete')->name('admin.categories.delete');
     });
 
+    //Products
+    Route::group(['prefix' => '/admin/products'], function (){
+        Route::get('/', 'ProductsController@index')->name('admin.products');
+        Route::get('/create', 'ProductsController@create')->name('admin.products.create');
+        Route::post('/add', 'ProductsController@add')->name('admin.products.add');
+        Route::get('/edit/{product}', 'ProductsController@edit')->name('admin.products.edit');
+        Route::post('/update/{product}', 'ProductsController@update')->name('admin.products.update');
+        Route::get('/delete/{product}', 'ProductsController@delete')->name('admin.products.delete');
+    });
+
+    //News
+    Route::group(['prefix' => '/admin/news'], function (){
+        Route::get('/', 'NewsController@index')->name('admin.news');
+        Route::get('/create', 'NewsController@create')->name('admin.news.create');
+        Route::post('/add', 'NewsController@add')->name('admin.news.add');
+        Route::get('/edit/{news}', 'NewsController@edit')->name('admin.news.edit');
+        Route::post('/update/{news}', 'NewsController@update')->name('admin.news.update');
+        Route::get('/delete/{news}', 'NewsController@delete')->name('admin.news.delete');
+    });
+
 
 });
 

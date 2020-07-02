@@ -8,13 +8,13 @@ use App\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $categories = Category::query()->orderBy('name', 'ASC')->get();
         return view('admin.categories', ['categories' => $categories]);
     }
 
-    function create()
+    public function create()
     {
         return view('admin.categoryCreate');
     }
@@ -35,11 +35,16 @@ class CategoriesController extends Controller
         $category->name = $request->name;
         $category->description = $request->description;
         $category->save();
-        return redirect('/admin/categories');
+        return redirect()->route('admin.categories');
     }
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
         $category = Category::query()->find($id);
         $category->name = $request->name;
         $category->description = $request->description;
