@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Category;
 use App\News;
+use App\Product;
 use App\User;
 use Auth;
 use Illuminate\Support\ServiceProvider;
@@ -29,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share('categories', Category::all());
-        View::share('news', News::all());
-        View::share('newsMain', News::query()->orderBy('created_at')->take(3)->get());
+        View::share('newsMain', News::query()->orderBy('created_at', 'desc')->take(3)->get());
+        View::share('randomProduct', Product::all()->random());
     }
 }

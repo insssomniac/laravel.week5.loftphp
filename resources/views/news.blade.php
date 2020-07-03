@@ -33,6 +33,11 @@
                 @endforeach
             </div>
         </div>
+        <div class="content-footer__container">
+
+            {{$news->links()}}
+
+        </div>
     </div>
 
 @endsection

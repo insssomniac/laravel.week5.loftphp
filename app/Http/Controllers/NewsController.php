@@ -10,7 +10,7 @@ class NewsController
 {
     public function index()
     {
-        $news = News::query()->orderBy('created_at')->take(6)->get();
+        $news = News::query()->orderBy('created_at', 'desc')->paginate(5);
         return view('news', [
             'title' => 'Новости – ГеймсМаркет',
             'news' => $news,

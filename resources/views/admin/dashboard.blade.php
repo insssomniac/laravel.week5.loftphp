@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="admin__container">
             <div class="card card--margin-bottom">
-                <div class="card-header">Current orders</div>
+                <div class="card-header card-header--bold">Current orders</div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-1 column-title">ID</div>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="card card--margin-bottom">
-                <div class="card-header">Last processed orders</div>
+                <div class="card-header card-header--bold">Last processed orders</div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-1 column-title">ID</div>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="card card--margin-bottom">
-                <div class="card-header">Last canceled orders</div>
+                <div class="card-header card-header--bold">Last canceled orders</div>
                 <div class="card-body">
 
                     <div class="row">

@@ -14,7 +14,7 @@ class OrdersController
     public function index()
     {
         $user = Auth::user();
-        $orders = $user->orders->where('order_status', '=', 2);
+        $orders = $user->orders()->where('order_status', '=', 2)->paginate(3);
         if (!empty($orders)){
             return view('orders', [
                 'title' => 'Заказы – ГеймсМаркет',

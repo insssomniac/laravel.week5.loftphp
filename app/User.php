@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function setAdmin()
+    {
+
+    }
+
     public static function products($userId)
     {
         $orders = User::find($userId)->orders;

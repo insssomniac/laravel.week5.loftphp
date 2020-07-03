@@ -21,6 +21,11 @@
     border-bottom: grey 1px solid;
 }
 
+.card-header--bold {
+    font-weight: bold;
+    font-size: 16px;
+}
+
 .admin__product-card, .admin__news-card {
     display: flex;
     justify-content: center;
