@@ -61,4 +61,16 @@ class User extends Authenticatable
         return $order;
     }
 
+    public function currentProductsCount()
+    {
+        $order = Order::whereRaw('user_id = ? and order_status = 0', [$this->id])->first();
+        if (!empty($order)) {
+            $products = $order->products;
+            $count = $products->count();
+            return $count;
+        } else {
+            return 0;
+        }
+    }
+
 }

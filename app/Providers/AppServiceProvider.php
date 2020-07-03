@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Category;
 use App\News;
-use App\Order;
 use App\User;
 use Auth;
 use Illuminate\Support\ServiceProvider;
@@ -32,8 +31,5 @@ class AppServiceProvider extends ServiceProvider
         View::share('categories', Category::all());
         View::share('news', News::all());
         View::share('newsMain', News::query()->orderBy('created_at')->take(3)->get());
-        //View::share('productsCount', User::currentOrder()->products->count());
-
-
     }
 }

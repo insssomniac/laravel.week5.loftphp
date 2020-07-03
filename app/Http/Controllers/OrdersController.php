@@ -13,7 +13,20 @@ class OrdersController
 {
     public function index()
     {
-        return view('orders', ['title' => 'Заказы – ГеймсМаркет']);
+        $user = Auth::user();
+        $orders = $user->orders->where('order_status', '=', 2);
+        if (!empty($orders)){
+            return view('orders', [
+                'title' => 'Заказы – ГеймсМаркет',
+                'orders' => $orders,
+            ]);
+        } else {
+            return view('orders', [
+                'title' => 'Заказы – ГеймсМаркет',
+                'orders' => [],
+            ]);
+        }
+
     }
 
     public function buy(int $productId)
@@ -33,11 +46,6 @@ class OrdersController
         } else {
             return 'Пожалуйста, войдите на сайт, чтобы делать покупки';
         }
-    }
-
-    public static function sendEmail()
-    {
-
     }
 
 }

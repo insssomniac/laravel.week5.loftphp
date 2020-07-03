@@ -11,6 +11,11 @@
     margin-bottom: 0;
 }
 
+.admin__orders {
+    padding: 15px 0 15px 0;
+    border-bottom: lightgray 1px solid;
+}
+
 .admin__card {
     padding: 10px 0 10px 0;
     border-bottom: grey 1px solid;
@@ -25,6 +30,10 @@
 
 .admin__image {
     max-width: 250px;
+}
+
+.admin__image--small {
+    max-width: 30px;
 }
 
 .admin__textarea, .admin__text {

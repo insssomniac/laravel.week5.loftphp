@@ -19,6 +19,7 @@ Auth::routes();
 Route::get('/', 'IndexController@index')->name('main');
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/cart', 'CartController@index')->name('cart');
+Route::get('/cart/submit', 'CartController@submit')->name('cart.submit');
 Route::get('/category/{category}', 'CategoryController@index')->name('category');
 Route::get('/product/{product}', 'ProductsController@productView')->name('product');
 Route::get('/news', 'NewsController@index')->name('news');
@@ -26,9 +27,16 @@ Route::get('/newsview/{news}', 'NewsController@newsView')->name('newsview');
 Route::get('/orders', 'OrdersController@index')->name('orders');
 Route::get('/buy/{product}', 'OrdersController@buy')->name('buy');
 
+
 //Admin routes
 Route::group(['namespace' => 'Admin', 'middleware' => 'admin'], function() {
-    Route::get('/admin', 'DashboardController@index')->name('admin.dashboard');
+
+    //Dashboard
+    Route::group(['prefix' => '/admin'], function (){
+        Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+        Route::get('/process/{order}', 'DashboardController@processOrder')->name('admin.processOrder');
+        Route::get('/cancel/{order}', 'DashboardController@cancelOrder')->name('admin.cancelOrder');
+    });
 
     //Categories
     Route::group(['prefix' => '/admin/categories'], function (){

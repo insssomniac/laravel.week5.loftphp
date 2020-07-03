@@ -3,8 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use function foo\func;
 
 class Order extends Model
 {
@@ -16,6 +19,11 @@ class Order extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'orders_products');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public static function createOrder ($productId)
@@ -46,6 +54,20 @@ class Order extends Model
         );
     }
 
+    public static function sendEmail($orderId)
+    {
+        $emails = DB::table('admin_emails')->get();
+        $emails = Collection::unwrap($emails);
 
+        $mails = [];
+        foreach ($emails as $email) {
+            $mails[] = $email->email;
+        }
+
+        Mail::raw('New oder waits for your attention! Order ID: ' . $orderId, function ($message) use ($mails) {
+            $message->to($mails);
+            $message->subject('New order');
+        });
+    }
 
 }

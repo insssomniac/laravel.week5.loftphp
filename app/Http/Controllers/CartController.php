@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\User;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class CartController
 {
@@ -33,9 +35,12 @@ class CartController
     public function submit()
     {
         $order = User::currentOrder();
-        $order->status = 1;
+        Order::sendEmail($order->id);
+        $order->order_status = 1;
         $order->save();
+
+        return 'Ваш заказ создан, мы обработаем его в ближайшее время. Спасибо!
+        <br><br>
+        <a href="/">Вернуться на главную</a>';
     }
-
-
 }

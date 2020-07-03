@@ -42,7 +42,7 @@
     </div>
     <div class="content-footer__container">
         @if($order)
-            <div class="btn-buy-wrap"><a href="#" class="btn-buy-wrap__btn-link">Перейти к оплате</a></div>
+            <div class="btn-buy-wrap"><a href="{{route('cart.submit')}}" class="btn-buy-wrap__btn-link">Подтвердить заказ</a></div>
         @endif
     </div>
 </div>
