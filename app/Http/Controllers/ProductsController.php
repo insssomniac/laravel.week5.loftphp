@@ -11,6 +11,7 @@ class ProductsController extends Controller
     public function productView(int $id)
     {
         $product = Product::find($id);
+
         $title = $product->name . ' – ГеймсМаркет';
 
         return view('product', [
