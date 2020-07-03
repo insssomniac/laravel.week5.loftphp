@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class OrdersProducts extends Migration
+class CreateAdminEmailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class OrdersProducts extends Migration
      */
     public function up()
     {
-        Schema::create('orders_products', function (Blueprint $table) {
+        Schema::create('admin_emails', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('product_id');
-            $table->bigInteger('order_id');
+            $table->string('email')->unique();
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
@@ -28,6 +27,6 @@ class OrdersProducts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders_products');
+        Schema::dropIfExists('admin_emails');
     }
 }

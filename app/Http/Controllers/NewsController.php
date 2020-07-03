@@ -4,15 +4,26 @@
 namespace App\Http\Controllers;
 
 
+use App\News;
+
 class NewsController
 {
     public function index()
     {
-        return view('news');
+        $news = News::query()->orderBy('created_at')->take(6)->get();
+        return view('news', [
+            'title' => 'Новости – ГеймсМаркет',
+            'news' => $news,
+        ]);
     }
 
-    public function newsview()
+    public function newsView(int $id)
     {
-        return view('newsview');
+        $news = News::find($id);
+        $newsTitle = $news->title;
+        return view('newsview', [
+            'title' => $newsTitle . ' – ГеймсМаркет',
+            'news' => $news
+        ]);
     }
 }

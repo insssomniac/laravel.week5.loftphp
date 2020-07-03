@@ -7,9 +7,16 @@ use App\Category;
 
 class CategoryController
 {
-    public function viewCategory(int $category)
+    public function index(int $category)
     {
-        $categories = Category::all();
-        return view('category');
+        $categoryName = Category::find($category)->name;
+        $categoryProducts = Category::find($category)->products;
+
+        return view('category', [
+            'title' => 'Игры в разделе ' . $categoryName . ' – ГеймсМаркет',
+            'categoryName' => $categoryName,
+            'categoryProducts' => $categoryProducts,
+        ]);
     }
+
 }

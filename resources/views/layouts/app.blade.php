@@ -51,6 +51,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.categories') }}">Categories</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.emails') }}">Admin emails</a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

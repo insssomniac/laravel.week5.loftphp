@@ -19,10 +19,12 @@ Auth::routes();
 Route::get('/', 'IndexController@index')->name('main');
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/cart', 'CartController@index')->name('cart');
-Route::get('/category', 'CategoryController@index')->name('category');
+Route::get('/category/{category}', 'CategoryController@index')->name('category');
+Route::get('/product/{product}', 'ProductsController@productView')->name('product');
 Route::get('/news', 'NewsController@index')->name('news');
-Route::get('/newsview', 'NewsController@newsview')->name('newsview');
+Route::get('/newsview/{news}', 'NewsController@newsView')->name('newsview');
 Route::get('/orders', 'OrdersController@index')->name('orders');
+Route::get('/buy/{product}', 'OrdersController@buy')->name('buy');
 
 //Admin routes
 Route::group(['namespace' => 'Admin', 'middleware' => 'admin'], function() {
@@ -56,6 +58,13 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'admin'], function() {
         Route::get('/edit/{news}', 'NewsController@edit')->name('admin.news.edit');
         Route::post('/update/{news}', 'NewsController@update')->name('admin.news.update');
         Route::get('/delete/{news}', 'NewsController@delete')->name('admin.news.delete');
+    });
+
+    //Emails
+    Route::group(['prefix' => '/admin/emails'], function (){
+        Route::get('/', 'EmailsController@index')->name('admin.emails');
+        Route::post('/add', 'EmailsController@add')->name('admin.emails.add');
+        Route::get('/delete/{email}', 'EmailsController@delete')->name('admin.emails.delete');
     });
 
 

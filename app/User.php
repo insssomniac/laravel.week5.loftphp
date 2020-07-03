@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -40,6 +42,23 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->is_admin;
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public static function products($userId)
+    {
+        $orders = User::find($userId)->orders;
+        $ordersArray = [];
+        $products = DB::table('orders_products')->whereIn('order_id', $orders);
+    }
+
+    public static function currentOrder() {
+        $order = Order::whereRaw('user_id = ? and order_status = 0', [Auth::id()])->first();
+        return $order;
     }
 
 }

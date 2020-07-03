@@ -3,6 +3,14 @@
     width: 1400px;
 }
 
+.card--margin-bottom {
+    margin-bottom: 20px;
+}
+
+.card--margin-bottom:last-child {
+    margin-bottom: 0;
+}
+
 .admin__card {
     padding: 10px 0 10px 0;
     border-bottom: grey 1px solid;
